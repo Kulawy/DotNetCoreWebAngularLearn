@@ -1,0 +1,99 @@
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+input, textarea {
+    font-size: 18px;
+    width: 200px;
+}
+
+input[type=submit] {
+    width: auto;
+
+}
+
+label {
+    font-size: 16px;
+}
+
+/*div#theForm {
+    background-color: lightgrey;
+}*/
+
+#theForm {
+    background-color: lightgrey;
+
+}
+
+#theForm input[type=submit] {
+    background-color: forestgreen;
+    color: white;
+}
+
+/*jeśli między kropką a elementem jest spacja(lub pomiędzy elementami ) to znaczy, że jest opisujący znacznik jest dzieckiem wcześniejszego elementu
+.product-props {
+    font-size: small;
+}*/
+
+ul.product-props {
+    font-size: small;
+}
+
+ul.product-props li{
+    list-style-type: none; 
+}
+
+.product-info {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 8px 2px;
+    margin: 2px;
+    width: 450px;
+    background-color: #9a9a9a;
+    border-radius: 9px;
+
+}
+
+.product-info img{
+    margin: 3px;
+    float: left;
+    border: 1px solid black;
+    max-width: 150px;
+}
+
+#loginToggle {
+    cursor: pointer;
+
+}
+
+.popup-form {
+    padding: 5px;
+    border: 2px grey inset;
+    display: inline-block;
+
+}
+
+    .popup-form input {
+        width: 200px;
+    }
+
+    .popup-form label {
+        width: 150px;
+        display: inline-block;
+    }
+
+    .popup-form input[type=checkbox], .popup-form input[type=submit] {
+        width: auto;
+    }
+
+
+/*
+    display mówi jak mają być wyświetlane elementy ?? czy obok siebie, czy jak ?? 
+    jak nie było tego to cały ten div był na szerokosc strony,
+    jak to jest to div jest na szerokosc najszerszego elementu ( w tym przypadku zdjęcia)
+
+    float zajmuje miejsce a pozwala reszcie kontentu zajac inne miejsce w boksie
+    jak nie było to cały kontent w kontenerze product-info był jeden nad drugim
+    jak dodalismy float do img to zdjęcie jest z lewej strony a reszta kontentu prubuje zająć reszte miejsca co zostało po prawej stronie zdjęcia
+*/
+
