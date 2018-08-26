@@ -15,14 +15,36 @@ namespace DotNetCoreWebAngularLearn
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //żeby nie było problemów musimy włączyć dependency injection bo tak działa ASP.NET core
+            //używamy defaultowego servisu microsoftowego
+            services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDefaultFiles();
+
+            //jeśli chcemy włączyć straszne strony przy wyrzucaniu błędów to app.UseDeveloperExceptionPage()
+            if (env.IsDevelopment())
+                app.UseDeveloperExceptionPage();
+
+
+            //jest spoko jak nie uzywamy ASP.NET core ale jak już zaczynamy uzywac to jest nam to nie potrzebne żeby się ładowały strony przez app.UseMvc
+            //app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseNodeModules(env);
+            //app.UseNodeModules(env);
+
+            app.UseMvc( cfg =>
+            {
+                cfg.MapRoute("Default",
+                    "/{controller}/{action}/{id?}",
+                    new { controller = "App",
+                    Action = "Index" });
+            });
+
+
+            //DEFAULT STUFF:
             //if (env.IsDevelopment())
             //{
             //    app.UseDeveloperExceptionPage();
