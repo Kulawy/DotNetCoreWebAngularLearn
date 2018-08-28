@@ -22,7 +22,7 @@ namespace DotNetCoreWebAngularLearn.ViewModels
         public string Subject { get; set; }
 
         [Required]
-        [MaxLength(250, ErrorMessage = "Too long message")]
+        [MaxLength(150, ErrorMessage = "Too long message")]
         public string Message { get; set; }
 
     }

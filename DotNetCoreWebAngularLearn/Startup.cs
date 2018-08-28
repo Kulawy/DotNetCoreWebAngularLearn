@@ -37,14 +37,13 @@ namespace DotNetCoreWebAngularLearn
             //jest spoko jak nie uzywamy ASP.NET core ale jak już zaczynamy uzywac to jest nam to nie potrzebne żeby się ładowały strony przez app.UseMvc
             //app.UseDefaultFiles();
             app.UseStaticFiles();
-            //app.UseNodeModules(env);
+            app.UseNodeModules(env);
 
             app.UseMvc( cfg =>
             {
                 cfg.MapRoute("Default",
-                    "/{controller}/{action}/{id?}",
-                    new { controller = "App",
-                    Action = "Index" });
+                    "{controller}/{action}/{id?}",
+                    new { controller = "App", Action = "Index" });
             });
 
 
