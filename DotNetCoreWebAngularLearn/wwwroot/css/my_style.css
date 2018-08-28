@@ -87,6 +87,20 @@ ul.product-props li{
     }
 
 
+menu li {
+    display: inline;
+}
+
+    menu li::after {
+        content: ' |';
+
+    }
+
+    menu li:last-of-type::after {
+         content: "";
+
+    }
+
 /*
     display mówi jak mają być wyświetlane elementy ?? czy obok siebie, czy jak ?? 
     jak nie było tego to cały ten div był na szerokosc strony,
@@ -95,5 +109,7 @@ ul.product-props li{
     float zajmuje miejsce a pozwala reszcie kontentu zajac inne miejsce w boksie
     jak nie było to cały kontent w kontenerze product-info był jeden nad drugim
     jak dodalismy float do img to zdjęcie jest z lewej strony a reszta kontentu prubuje zająć reszte miejsca co zostało po prawej stronie zdjęcia
+
+    jeśli by było np. menu>li to jest jakby dokładniejsze określienie "pure only children of element"??
 */
 
