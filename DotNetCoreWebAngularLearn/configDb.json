@@ -1,0 +1,12 @@
+{
+  "ConnectionStrings": {
+    "MyDataConnectionString": "server=KULAWY-NOTEBOOK\\SQLEXPRESS; Database=learnCore; Integrated Security=true; MultipleActiveResultSets=true;",
+    "PostgreSQLConnectionString": "Host=localhost; Port=5432; Database=learningASP;Persist Security Info=True;User ID=user; Password=1234; Pooling=true"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default":  "Information",
+      "Microsoft":  "Warning"
+    }
+  }
+}

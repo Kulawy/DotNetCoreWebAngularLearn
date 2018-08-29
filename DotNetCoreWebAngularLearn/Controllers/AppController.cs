@@ -1,4 +1,5 @@
 ﻿
+using DotNetCoreWebAngularLearn.Data;
 using DotNetCoreWebAngularLearn.Services;
 using DotNetCoreWebAngularLearn.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -13,15 +14,19 @@ namespace DotNetCoreWebAngularLearn.Controllers
     public class AppController : Controller
     {
         private readonly IMailService _mailService;
+        private readonly IMyRepository _repository;
 
-        public AppController(IMailService mailService)
+        //jak już mamy IMyRepository to zamieniamy MyDataContext context na IMyRepository context w konstruktorze
+        public AppController(IMailService mailService, IMyRepository repository )
         {
             _mailService = mailService;
+            _repository = repository;
         }
         
         public IActionResult Index()
         {
-
+            //var result = _context.Products.ToList();
+            var result = _repository.GetAllProducts();
             return View();
         }
 
@@ -58,6 +63,24 @@ namespace DotNetCoreWebAngularLearn.Controllers
         {
             ViewBag.Title = "About Us";
             return View();
+        }
+
+        public IActionResult Shop()
+        {
+            //var results = _context.Products
+            //    .OrderBy(p => p.Category)
+            //    .ToList();
+
+            // lub linquery : 
+            //var results = from p in _context.Products
+            //              orderby p.Category
+            //              select p;    i wtedy jeszcze return results.ToList();
+
+
+            //jak już mamy _repository nie _context to
+            var results = _repository.GetAllProducts();
+
+            return View(results);
         }
 
     }
