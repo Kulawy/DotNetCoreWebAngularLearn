@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using DotNetCoreWebAngularLearn.Data;
 using DotNetCoreWebAngularLearn.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace DotNetCoreWebAngularLearn
 {
@@ -31,6 +34,8 @@ namespace DotNetCoreWebAngularLearn
                 cfg.UseSqlServer(_config.GetConnectionString("MyDataConnectionString"));
             });
 
+            services.AddAutoMapper();
+
             services.AddTransient<MySeeder>();
 
             services.AddScoped<IMyRepository, MyRepository>();
@@ -39,7 +44,11 @@ namespace DotNetCoreWebAngularLearn
 
             //żeby nie było problemów musimy włączyć dependency injection bo tak działa ASP.NET core
             //używamy defaultowego servisu microsoftowego
-            services.AddMvc();
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1) // dodalism tą linijkę przy tworzeniu API (CreateTheApi) 
+                .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore); // dodalismy przy tworzeniu API dla OrdersController
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

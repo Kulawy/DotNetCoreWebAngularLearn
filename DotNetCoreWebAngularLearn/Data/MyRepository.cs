@@ -1,4 +1,5 @@
 ﻿using DotNetCoreWebAngularLearn.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,29 @@ namespace DotNetCoreWebAngularLearn.Data
             _logger = logger;
         }
 
+        public void AddEntity(object model)
+        {
+            _ctx.Add(model);
+        }
+
+        public IEnumerable<Order> GetAllOrders(bool includeItems)
+        {
+            if (includeItems)
+            {
+                return _ctx.Orders
+                    .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
+                    .ToList();
+
+            }
+            else
+            {
+                return _ctx.Orders
+                            .ToList();
+            }
+
+            //return _ctx.Orders.ToList();
+        }
 
         public IEnumerable<Product> GetAllProducts()
         {            
@@ -36,7 +60,16 @@ namespace DotNetCoreWebAngularLearn.Data
                 return null;
             }
 
-        } 
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return _ctx.Orders
+                .Include(o => o.Items)
+                .ThenInclude(i => i.Product)
+                .Where(o => o.Id == id)
+                .FirstOrDefault();
+        }
 
         public IEnumerable<Product> GetProductsByCategory(string category)
         {

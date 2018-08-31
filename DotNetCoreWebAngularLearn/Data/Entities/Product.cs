@@ -20,5 +20,6 @@ namespace DotNetCoreWebAngularLearn.Data.Entities
         public DateTime ArtistBirthDate { get; set; }
         public DateTime ArtistDeathDate { get; set; }
         public string ArtistNationality { get; set; }
+
     }
 }
